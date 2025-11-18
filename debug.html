@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔍 Herramienta de Debug - Obtener Entry IDs</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 { color: #333; margin-bottom: 20px; }
+        .instructions {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .instructions ol { margin-left: 20px; }
+        .instructions li { margin-bottom: 10px; }
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            resize: vertical;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 15px;
+            width: 100%;
+        }
+        button:hover { background: #764ba2; }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Obtener Entry IDs de tu Formulario</h1>
+        
+        <div class="instructions">
+            <h3>Pasos:</h3>
+            <ol>
+                <li>Abre tu Google Form en una pestaña nueva</li>
+                <li>Presiona <strong>F12</strong> (Abrir Developer Tools)</li>
+                <li>Ve a la pestaña <strong>"Console"</strong></li>
+                <li>Copia y pega este código:</li>
+            </ol>
+        </div>
+
+        <textarea id="codigo" readonly>
+// Ejecuta esto en la consola de tu Google Form publicado
+const campos = [
+    'Nombre Completo',
+    'Correo Electrónico', 
+    'Teléfono',
+    'Empresa',
+    'Asunto',
+    'Mensaje',
+    'Fecha'
+];
+
+const entryIds = {};
+const inputs = document.querySelectorAll('input[name^="entry"], textarea[name^="entry"]');
+
+inputs.forEach((input, index) => {
+    console.log(`Campo ${index}: ${input.name}`);
+    if (campos[index]) {
+        entryIds[campos[index]] = input.name;
+    }
+});
+
+console.log('=== ENTRY IDS ENCONTRADOS ===');
+console.table(entryIds);
+
+// Copia este objeto a tu script.js
+console.log(JSON.stringify(entryIds, null, 2));
+        </textarea>
+
+        <button onclick="copiar()">📋 Copiar Código</button>
+
+        <div class="info">
+            <strong>⚠️ Importante:</strong><br>
+            1. Ve a: <a href="https://docs.google.com/forms/d/e/1FAIpQLSfHH5Gz9HJP7ZTBckJpEg0dIwV4Cvf1GlEAfat9LjOM3zlVFQ/viewform" target="_blank">Tu Formulario</a><br>
+            2. Abre la consola (F12 → Console)<br>
+            3. Pega el código de arriba<br>
+            4. Presiona Enter<br>
+            5. Copia los Entry IDs que aparezcan<br>
+            6. Pégalos en el script.js
+        </div>
+    </div>
+
+    <script>
+        function copiar() {
+            const codigo = document.getElementById('codigo');
+            codigo.select();
+            document.execCommand('copy');
+            alert('✅ Código copiado al portapapeles');
+        }
+
+        // Mostrar instrucciones adicionales
+        console.log('%c🔍 HERRAMIENTA DE DEBUG', 'font-size: 20px; color: #667eea; font-weight: bold;');
+        console.log('Usa el código de la página para obtener los Entry IDs correctos');
+    </script>
+</body>
+</html>

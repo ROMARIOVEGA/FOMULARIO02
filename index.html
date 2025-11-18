@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario - Guardar en Excel Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <h1>📋 Formulario de Registro</h1>
+            <p class="subtitle">Completa el formulario y tus datos se guardarán en Excel en línea</p>
+            
+            <form id="formulario" class="form">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo *</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Juan Pérez">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo Electrónico *</label>
+                    <input type="email" id="email" name="email" required placeholder="juan@ejemplo.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" placeholder="+34 123 456 789">
+                </div>
+
+                <div class="form-group">
+                    <label for="empresa">Empresa</label>
+                    <input type="text" id="empresa" name="empresa" placeholder="Mi Empresa S.A.">
+                </div>
+
+                <div class="form-group">
+                    <label for="asunto">Asunto *</label>
+                    <input type="text" id="asunto" name="asunto" required placeholder="¿Cuál es tu consulta?">
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje">Mensaje *</label>
+                    <textarea id="mensaje" name="mensaje" required placeholder="Escribe tu mensaje aquí..." rows="5"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha" name="fecha">
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar Formulario</button>
+            </form>
+
+            <div id="mensaje-exito" class="mensaje-exito" style="display: none;">
+                ✅ ¡Formulario enviado exitosamente! Tus datos se han guardado en Excel en línea.
+            </div>
+
+            <div id="mensaje-error" class="mensaje-error" style="display: none;">
+                ❌ Error al enviar el formulario. Por favor, intenta de nuevo.
+            </div>
+
+            <div class="instrucciones">
+                <h3>📝 Instrucciones:</h3>
+                <ol>
+                    <li>Completa todos los campos marcados con *</li>
+                    <li>Haz clic en "Enviar Formulario"</li>
+                    <li>Tus datos se guardarán automáticamente en Google Sheets</li>
+                    <li>Ve a tu cuenta de Google para ver los datos guardados</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
